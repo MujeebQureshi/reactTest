@@ -2,10 +2,23 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Login from './Pages/Login/Login';
 import Landing from './Pages/Landing/Landing';
+//import { ReactIndexedDB } from 'react-indexed-db';
 
 class App extends Component {
+	
+  db: ReactIndexedDB;
+  
   constructor(){
 	super();
+	
+	/*this.db = new ReactIndexedDB('testappDB', 1);
+    this.db.openDatabase(1, evt => {
+		let objectStore = evt.currentTarget.result.createObjectStore('user', { keyPath: 'id', autoIncrement: true });
+		objectStore.createIndex('id', 'id', { unique: true });
+		objectStore.createIndex('userid', 'userid', { unique: false });
+		objectStore.createIndex('password', 'password', { unique: false });
+	});*/
+	
 	this.state = { 
 		isUserLoggedIn: false,
 		LoginPageScripts	:	[	'assets/vendors/base/vendors.bundle.js',
@@ -31,12 +44,52 @@ class App extends Component {
 	this.mountLoginScripts = this.mountLoginScripts.bind(this);
 	this.mountLandingScripts = this.mountLandingScripts.bind(this);
 	this.mountScripts = this.mountScripts.bind(this);
-	
+	/*this.getUserFromDB = this.getUserFromDB.bind(this);
+	this.addUserToDB = this.addUserToDB.bind(this);
+	this.removeUserFromDB = this.removeUserFromDB.bind(this);*/
   }
+  
+  /*getUserFromDB(){
+	//alert('I am called ' + param);
+    this.db.getAll('user').then(
+      obj => {
+        //this.setState({
+        //  peoples: people
+        //})
+		console.log(obj);
+		return obj;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+	return null;
+  }
+  
+  addUserToDB(uid,pwd){
+	this.db.add('user', { userid: uid, password: pwd }).then(
+		() => {
+			// Do something after the value was added
+		},
+		error => {
+			console.log(error);
+		}
+	);
+  }
+  
+  removeUserFromDB(){
+	this.db.clear('user').then(
+		() => {
+			// Do something after clear
+		},
+		error => {
+			console.log(error);
+		}
+	);
+  }*/
   
   getLoginScripts(){
 	let scripts = this.state.lstLoginPageScripts;
-	//console.log(scripts)
 	if(scripts.length){
 	}
 	else{
@@ -57,7 +110,6 @@ class App extends Component {
   
   getLandingScripts(){
 	let scripts = this.state.lstLandingPageScripts;
-	//console.log(scripts)
 	if(scripts.length){
 	}
 	else{
@@ -77,19 +129,13 @@ class App extends Component {
   
   
   mountLoginScripts(){
-	let user = localStorage.getItem('test');
-	if(user == null){
-		let scripts = this.getLoginScripts();
-		this.mountScripts(scripts,0,scripts.length,'areLoginScriptsAdded',false);
-	}  
+	let scripts = this.getLoginScripts();
+	this.mountScripts(scripts,0,scripts.length,'areLoginScriptsAdded',false);
   }
   
   mountLandingScripts(){
-	let user = localStorage.getItem('test');
-	if(user != null){
-		let scripts = this.getLandingScripts();
-		this.mountScripts(scripts,0,scripts.length,'areLandingScriptsAdded',true);
-	}  
+	let scripts = this.getLandingScripts();
+	this.mountScripts(scripts,0,scripts.length,'areLandingScriptsAdded',true);
   }
   
   mountScripts(scripts,i,count,key,boolUserSignInStatus){
@@ -129,6 +175,7 @@ class App extends Component {
   
   setIsUserLoggedIn(key){
 	if(key == 'LOGOUT'){
+		//this.removeUserFromDB();
 		localStorage.removeItem('test');
 		this.unmountLandingScripts();
 		this.mountLoginScripts();
@@ -137,6 +184,7 @@ class App extends Component {
 		})
 	}
 	else if(key == 'LOGIN'){
+		//this.addUserToDB('test','test');
 		localStorage.setItem('test','Hullo');
 		this.unmountLoginScripts();
 		this.mountLandingScripts();
@@ -151,7 +199,7 @@ class App extends Component {
   }
   
   componentDidMount(){
-	//localStorage.removeItem('test');
+	//let user = this.getUserFromDB();
 	let user = localStorage.getItem('test');
 	if(user == null){
 		this.unmountLandingScripts();

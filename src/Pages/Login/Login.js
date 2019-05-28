@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../../../public/assets/app/media/img/logos/logo-2.png';
+//import logo from '../../../public/assets/app/media/img/logos/logo-2.png';
 import SignInPartial from './SignInPartial';
 import SignUpPartial from './SignUpPartial';
 import ForgetPasswordPartial from './ForgetPasswordPartial';
@@ -26,11 +26,11 @@ class Login extends Component {
   }
   
   showAlerts(qform, type, message){
-	  let alertDiv = $('<div class="m-alert m-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\t\t\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\t\t\t<span></span>\t\t</div>');
+	  /*let alertDiv = $('<div class="m-alert m-alert--outline alert alert-' + type + ' alert-dismissible" role="alert">\t\t\t<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>\t\t\t<span></span>\t\t</div>');
 	  qform.find(".alert").remove(), 
 	  alertDiv.prependTo(qform); 
 	  alertDiv.addClass("fadeIn animated");
-	  alertDiv.find("span").html(message);
+	  alertDiv.find("span").html(message);*/
   }
   
   submitSignIn(e){
@@ -144,7 +144,7 @@ class Login extends Component {
 							<div className="m-login__wrapper">
 								<div className="m-login__logo">
 									<a href="#">
-										<img src={logo} />
+										<img src='assets/app/media/img/logos/logo-2.png' />
 									</a>
 								</div>
 								<SignInPartial submitSignIn={this.submitSignIn}/>

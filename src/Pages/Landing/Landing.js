@@ -8,6 +8,7 @@ import validate from 'jquery-validation'
 
 import HeaderPartial from './HeaderPartial';
 import SideMenuPartial from './SideMenuPartial';
+import MainBodyPartial from './MainBodyPartial';
 import FooterPartial from './FooterPartial';
 import RightSideBarPartial from './RightSideBarPartial';
 
@@ -31,7 +32,10 @@ class Landing extends Component {
 	<div>
       <div className="m-grid m-grid--hor m-grid--root m-page">
 			<HeaderPartial setIsUserLoggedInEd={this.setIsUserLoggedInEd} />
-			<SideMenuPartial />
+			<div className="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+				<SideMenuPartial />
+				<MainBodyPartial />
+			</div>
 			<FooterPartial />
 		</div>
 		<RightSideBarPartial />
