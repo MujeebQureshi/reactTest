@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+import 'fullcalendar';
+//import './CustomCoreJS.js';
 
 class MainBodyPartial extends Component {
+  constructor(){
+	super();
+	this.myTempFunction = this.myTempFunction.bind(this);
+  }
+  
+  myTempFunction(){
+	//alert('hello');  
+	let a = window.AccessCalender();
+	console.log(a);
+	//
+  }
+  
   render() {
     return (
 	<div className="m-grid__item m-grid__item--fluid m-wrapper">
@@ -505,7 +520,7 @@ class MainBodyPartial extends Component {
 							<div className="m-portlet__head-tools">
 								<ul className="m-portlet__nav">
 									<li className="m-portlet__nav-item">
-										<a href="#" className="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+										<a href="javascript:void(0);" onClick={()=>this.myTempFunction()} className="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
 											<span>
 												<i className="la la-plus"></i>
 												<span>
