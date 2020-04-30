@@ -5,7 +5,7 @@
   "dependencies": {
     "fullcalendar": "3.5.1",
     "inputmask": "^4.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mousewheel": "^3.1.13",
     "jquery-validation": "^1.19.0",
     "moment": "^2.24.0",
